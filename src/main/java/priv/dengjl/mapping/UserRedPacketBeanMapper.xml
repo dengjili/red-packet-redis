@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="priv.dengjl.dao.UserRedPacketBeanMapper">
+	<resultMap id="BaseResultMap" type="priv.dengjl.bean.UserRedPacketBean">
+		<result column="id" jdbcType="INTEGER" property="id" />
+		<result column="red_packet_id" jdbcType="INTEGER" property="redPacketId" />
+		<result column="user_id" jdbcType="INTEGER" property="userId" />
+		<result column="amount" jdbcType="DECIMAL" property="amount" />
+		<result column="get_time" jdbcType="TIMESTAMP" property="getTime" />
+		<result column="note" jdbcType="VARCHAR" property="note" />
+	</resultMap>
+	
+	<insert id="insertRedPacket" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO USER_RED_PACKET(RED_PACKET_ID, USER_ID, AMOUNT, GET_TIME, NOTE)
+		VALUES(#{redPacketId}, #{userId}, #{amount}, #{getTime}, #{note})
+	</insert>
+	
+</mapper>

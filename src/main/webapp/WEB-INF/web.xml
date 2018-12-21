@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	version="3.1">
+	<display-name>fast-group</display-name>
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+
+	<!--Spring的相关设置 -->
+	<listener>
+		<!--注册Spring的ServletContext监听器，监听到服务器启动时，自动执行ContextLoaderListener的方法初始化Spring -->
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	<context-param>
+		<!--加载Spring的配置文件，随着监听器触发，Spring调用这里，找到Spring的核心配置文件 -->
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:spring-mybaties.xml</param-value>
+	</context-param>
+
+	<!--SpringMVC的相关设置 -->
+	<servlet>
+		<!--SpringMVC是基于Servlet使用中央处理器处理页面请求，配置中央处理器的全路径 -->
+		<servlet-name>springmvc</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<!--当页面有请求时，DispatcherServlet对象调用这里，获取到SpringMVC的核心配置文件 -->
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:springmvc-servlet.xml</param-value>
+		</init-param>
+		<!--优先级，数字越小级别越高 -->
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<!--指定请求的映射，链接为指定形式时，使用Servlet处理，其他链接不执行Servlet -->
+		<servlet-name>springmvc</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+
+	<!--解决字符编码异常的过滤器 -->
+	<filter>
+		<filter-name>EncodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>utf-8</param-value>
+		</init-param>
+		<init-param>
+			<param-name>forceRequestEncoding</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		<init-param>
+			<param-name>forceResponseEncoding</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>EncodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+</web-app>

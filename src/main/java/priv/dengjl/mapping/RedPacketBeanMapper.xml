@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="priv.dengjl.dao.RedPacketBeanMapper">
+	<resultMap id="BaseResultMap" type="priv.dengjl.bean.RedPacketBean">
+		<result column="id" jdbcType="INTEGER" property="id" />
+		<result column="user_id" jdbcType="INTEGER" property="userId" />
+		<result column="amount" jdbcType="DECIMAL" property="amount" />
+		<result column="send_date" jdbcType="TIMESTAMP" property="sendDate" />
+		<result column="total" jdbcType="INTEGER" property="total" />
+		<result column="unit_amount" jdbcType="DECIMAL" property="unitAmount" />
+		<result column="stock" jdbcType="INTEGER" property="stock" />
+		<result column="vsersion" jdbcType="INTEGER" property="vsersion" />
+		<result column="note" jdbcType="VARCHAR" property="note" />
+	</resultMap>
+	
+	<select id="getRedPacket" parameterType="int" resultMap="BaseResultMap">
+		SELECT * FROM RED_PACKET WHERE ID = #{id}
+	</select>
+	
+	<!-- 悲观锁 数据库上面加锁【for update】，代码上加锁【synchronized】, 防止并发出现共享数据问题 -->
+	<select id="getRedPacket2" parameterType="int" resultMap="BaseResultMap">
+		SELECT * FROM RED_PACKET WHERE ID = #{id} for update
+	</select>
+	
+	<update id="deductRedPacketAmount" parameterType="int">
+		UPDATE RED_PACKET SET STOCK = STOCK - 1 WHERE ID = #{id}
+	</update>
+	
+	<!-- 乐观锁，引入version字段，没有重入机制 -->
+	<update id="deductRedPacketAmountByVersion">
+		UPDATE RED_PACKET SET STOCK = STOCK - 1, VSERSION = VSERSION + 1   WHERE ID = #{id} AND VSERSION = #{version}
+	</update>
+	
+	<select id="getAvailableRedPackets" resultMap="BaseResultMap">
+		SELECT * FROM RED_PACKET WHERE STOCK > 0
+	</select>
+	
+	<update id="deductRedPacketByAmount">
+		UPDATE RED_PACKET SET STOCK = STOCK - #{amount} WHERE ID = #{id}
+	</update>
+</mapper>
