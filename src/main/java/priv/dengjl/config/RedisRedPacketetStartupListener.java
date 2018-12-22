@@ -37,6 +37,10 @@ public class RedisRedPacketetStartupListener implements ApplicationContextAware 
 	public void setApplicationContext(ApplicationContext ctx) throws BeansException {
 		try {
 			Jedis jedis = (Jedis) redisTemplate.getConnectionFactory().getConnection().getNativeConnection();
+			// 删除旧数据
+			jedis.flushAll();
+			logger.info("删除旧数据完成");
+			
 			// 读取lua脚本文件
 			String sha = loadLuaScript(jedis);
 			// 设置lua脚本的sha值
@@ -65,7 +69,8 @@ public class RedisRedPacketetStartupListener implements ApplicationContextAware 
 			redisTemplate.executePipelined(callback);
 			logger.info("将数据库数据配置到redis中完成");
 			
-			
+			// 归还资源
+			jedis.close();
 		} catch (Exception e) {
 			logger.error("RedisRedPacketetStartupListener初始化失败，请核查。{}", e.getMessage());
 		}

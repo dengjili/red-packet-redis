@@ -12,8 +12,8 @@
     
     <!-- redis 连接池配置-->
     <bean id="poolConfig" class="redis.clients.jedis.JedisPoolConfig">
-        <property name="maxIdle" value="50" />
-        <property name="maxTotal" value="100" />
+        <property name="maxIdle" value="100" />
+        <property name="maxTotal" value="200" />
         <property name="maxWaitMillis" value="5000" />
     </bean>
 

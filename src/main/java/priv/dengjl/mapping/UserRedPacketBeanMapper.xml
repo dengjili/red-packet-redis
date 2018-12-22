@@ -12,7 +12,7 @@
 	
 	<insert id="insertRedPacket" useGeneratedKeys="true" keyProperty="id">
 		INSERT INTO USER_RED_PACKET(RED_PACKET_ID, USER_ID, AMOUNT, GET_TIME, NOTE)
-		VALUES(#{redPacketId}, #{userId}, #{amount}, #{getTime}, #{note})
+		VALUES(#{redPacketId}, #{userId}, #{amount}, #{getTime,jdbcType=TIMESTAMP}, #{note})
 	</insert>
 	
 </mapper>

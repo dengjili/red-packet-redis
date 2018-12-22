@@ -22,7 +22,7 @@
 <script>
 $(document).ready(function(){
 	$("#demo1").bind("click", function(){
-		for (var i = 1; i <= 2000; i++) {
+		for (var i = 1; i <= 5000; i++) {
 			$.get("getRedPacket/1/" + i, function(data){
 				console.log(data);
 			});
@@ -30,7 +30,7 @@ $(document).ready(function(){
 		alert("get ok");
 	});
 	$("#demo2").bind("click", function(){
-		for (var i = 1; i <= 2000; i++) {
+		for (var i = 1; i <= 5000; i++) {
 			$.get("getRedPacket2/2/" + i, function(data){
 				console.log(data);
 			});
@@ -38,7 +38,7 @@ $(document).ready(function(){
 		alert("get ok");
 	});
 	$("#demo3").bind("click", function(){
-		for (var i = 1; i <= 2000; i++) {
+		for (var i = 1; i <= 5000; i++) {
 			$.get("getRedPacket3/3/" + i, function(data){
 				console.log(data);
 			});
@@ -46,7 +46,7 @@ $(document).ready(function(){
 		alert("get ok");
 	});
 	$("#demo4").bind("click", function(){
-		for (var i = 1; i <= 2000; i++) {
+		for (var i = 1; i <= 5000; i++) {
 			$.get("getRedPacket4/4/" + i, function(data){
 				console.log(data);
 			});
@@ -54,7 +54,7 @@ $(document).ready(function(){
 		alert("get ok");
 	});
 	$("#demo5").bind("click", function(){
-		for (var i = 1; i <= 2000; i++) {
+		for (var i = 1; i <= 5000; i++) {
 			$.get("getRedPacket5/5/" + i, function(data){
 				console.log(data);
 			});
@@ -62,7 +62,7 @@ $(document).ready(function(){
 		alert("get ok");
 	});
 	$("#demo6").bind("click", function(){
-		for (var i = 1; i <= 2000; i++) {
+		for (var i = 1; i <= 5000; i++) {
 			$.get("getRedPacket6/6/" + i, function(data){
 				console.log(data);
 			});

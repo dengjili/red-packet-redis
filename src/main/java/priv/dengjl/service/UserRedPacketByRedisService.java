@@ -96,7 +96,7 @@ public class UserRedPacketByRedisService {
 				pst.setInt(1, userRedPacketBean.getRedPacketId());
 				pst.setInt(2, userRedPacketBean.getUserId());
 				pst.setBigDecimal(3, userRedPacketBean.getAmount());
-				pst.setDate(4, new java.sql.Date(userRedPacketBean.getGetTime().getTime()));
+				pst.setTimestamp(4, new Timestamp(userRedPacketBean.getGetTime().getTime()));
 				pst.setString(5, userRedPacketBean.getNote());
 				pst.addBatch();
 			}
@@ -139,7 +139,7 @@ public class UserRedPacketByRedisService {
 			logger.info("最后一个红包消耗：{}毫秒", (end - start));
 		}
 		
-		// 关闭资源
+		// 归还资源
 		jedis.close();
 		long currentTimeEnd = System.currentTimeMillis();
 		logger.info("当前红包为：{}, 用户为：{}， 消耗：{}毫秒", redPacketId, userId, (currentTimeEnd - currentTime));

@@ -2,6 +2,7 @@ package priv.dengjl.bean;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.util.Date;
 
 public class UserRedPacketBean implements Serializable {
@@ -15,7 +16,7 @@ public class UserRedPacketBean implements Serializable {
 
     private BigDecimal amount;
 
-    private Date getTime;
+    private Timestamp getTime;
 
     private String note;
 
@@ -51,11 +52,11 @@ public class UserRedPacketBean implements Serializable {
         this.amount = amount;
     }
 
-    public Date getGetTime() {
+    public Timestamp getGetTime() {
         return getTime;
     }
 
-    public void setGetTime(Date getTime) {
+    public void setGetTime(Timestamp getTime) {
         this.getTime = getTime;
     }
 
