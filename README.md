@@ -1,13 +1,13 @@
 # red-packet-redis（秒杀系统）
 业务基于抢红包，技术采用 `ssm架构` + `redis` + mysql 开发
 
-## 总体架构图
+## 总体设计架构
 
 ![Architecture](https://raw.githubusercontent.com/dengjili/red-packet-redis/master/picture/Architecture.jpg)
 
 ## 快速了解
 
-### 系统配置
+### 系统配置采用xml配置为主
 ![config](https://raw.githubusercontent.com/dengjili/red-packet-redis/master/picture/config.png)
 
 ### 配置系统启动类RedisRedPacketetStartupListener
