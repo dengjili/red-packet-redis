@@ -3,5 +3,5 @@
 
 ## 总体架构图
 
-![Architecture](http://dubbo.apache.org/img/architecture.png)
+![Architecture](https://raw.githubusercontent.com/dengjili/red-packet-redis/master/picture/Architecture.jpg)
 
